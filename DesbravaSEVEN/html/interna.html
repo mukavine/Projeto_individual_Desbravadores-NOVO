@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina inicial</title>
+    <link rel="stylesheet" href="../css/interna.css">
+    <link rel="icon" href="../css/imgs/logotipo.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/interna.js"></script>
+    <!-- <script  src="https://www.gstatic.com/charts/loader.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/charts/loader.js"></script> -->
+
+</head>
+
+<body>
+
+    <div class="pg1">
+        <div class="painel">
+            <div class="logo_painel">
+                <img src="../css/imgs/foto_logo_painel.png">
+            </div>
+            <div class="boas_vindas">
+                <div class="ola" style="float:left; width: 30%;">Olá,</div>
+                <div>Samuel.</div>
+                <div>Seja bem vindo!</div>
+            </div>
+            <div class="opçoes_painel">
+                <div class="opçoes1" onclick="trilha()">
+                    <div class="topico">•</div>
+                    <div class="opçao1">Trilha de classes</div>
+                </div>
+                <div class="opçoes2" onclick="grafico()">
+                    <div class="topico">•</div>
+                    <div class="opçao2">Grafico de especialidades</div>
+                </div>
+                <div class="opçoes3" onclick="mestrado()">
+                    <div class="topico3">•</div>
+                    <div class="opçao3">Mestrados</div>
+                </div>
+            </div>
+            <div class="botao_sair">
+                <a href="../html/index.html"><button onclick="sair()">Sair</button></a>
+            </div>
+
+        </div>
+        <div class="conteudo">
+            <div class="container_conteudo conteudo1" id="seleçao_trilha">
+                <div class="enunciado">
+                    <div class="texto_enunciado">
+                        <div style="margin-left: 5%;">Cadastre a especialidade concluida e </div>
+                        <div style="margin-left: 5%;">atualize seu desempenho nas classes.</div>
+                    </div>
+                    <div class="opçoes">
+                        <select>
+                            <option value="1">Escolha</option>
+                            <option value="2">Fogueiras</option>
+                            <option value="3">Pioneiria</option>
+                            <option value="4">Computaçao</option>
+                            <option value="5">Ordem unida</option>
+                            <option value="6">Repteis</option>
+                            <option value="7">Coraçao e circulaçao</option>
+                            <option value="8">Felinos</option>
+                            <option value="9">Escultura</option>
+                            <option value="10">Flores</option>
+                        </select>
+                        <button onclick="cadastrar_especialidade()">Cadastrar</button>
+                    </div>
+                </div>
+                <div class="classes_cima">
+                    <div class="container_classes">
+                        <div class=" teste foto_1">
+                            <div class="porcentagem o">13%</div>
+                        </div>
+                        <div class="texto">Amigo</div>
+                    </div>
+                    <div class="container_classes">
+                        <div class="teste foto_2">
+                            <div class="porcentagem">27%</div>
+                        </div>
+                        <div class="texto">Companheiro</div>
+                    </div>
+                    <div class="container_classes">
+                        <div class="teste foto_3">
+                            <div class="porcentagem">50%</div>
+                        </div>
+                        <div class="texto">Pesquisador</div>
+                    </div>
+                </div>
+                <div class="classes_baixo">
+                    <div class="container_classes">
+                        <div class=" teste foto_4">
+                            <div class="porcentagem">0%</div>
+                        </div>
+                        <div class="texto">Pioneiro</div>
+                    </div>
+                    <div class="container_classes">
+                        <div class=" teste foto_5">
+                            <div class="porcentagem">72%</div>
+                        </div>
+                        <div class="texto">Excurcionista</div>
+                    </div>
+                    <div class="container_classes">
+                        <div class="teste foto_6">
+                            <div class="porcentagem">5%</div>
+                        </div>
+                        <div class="texto">Guia</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container_conteudo conteudo2" id="seleçao_grafico" style="display:none;">
+                <div class="enunciado">Compare as classes, e mensure sua dificuldade.</div>
+                <div class="analitics">
+                    <div class="metrica facil">
+                        <div>12</div>
+                        <div class="nivel">Fácil</div>
+                    </div>
+                    <div class="metrica medio">
+                        <div>13 a 22</div>
+                        <div class="nivel">Médio</div>
+                    </div>
+                    <div class="metrica dificil" onclick="drawChart()">
+                        <div>23</div>
+                        <div class="nivel">Difícil</div>
+                    </div>
+                </div>
+                <div class="conteudo_grafico">
+                    <div class="container_select">Tipo de grafico:
+                        <select id="select_grafico">
+                            <option value="barra">Quantitativo</option>
+                            <option value="percentual">Percentual</option>
+                        </select>
+                    </div>
+                    <div class="container_grafico1" id="seleçao_barra">
+                        <canvas id="myChart1" class="canvas1"></canvas>
+
+                    </div>
+                    <div class="container_grafico2" id="seleçao_porcentagem">
+                        <div id='piechart' style="height:  auto; width: auto;  "></div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="container_conteudo conteudo3" id="seleçao_mestrados" style="display:none;">
+              <div class="enunciado">Descubra o tempo de conquista dos mestrados</div>
+              <div class="interaçao">
+                  <div class="container_interaçao">
+                      <div class="inputs">
+                          <div class="conteudo_inputs">
+                              Qtd. de Mestrados:
+                               <br>
+                              <input id="input_mestrado">
+                          </div>
+                          <div class="conteudo_inputs">
+                            Especialidades p/ mês:
+                            <br>
+                           <input id="input_especialidades_por_mes">
+                          </div>
+                      </div>
+                      <button onclick="calcular_tempo()">Calcular tempo</button>
+                  </div>
+              </div>
+              <div class="conteudo_for" id="div_for"></div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+    const labels1 = [
+        'Amigo',
+        'Companheiro',
+        'Pesquisador',
+        'Pioneiro',
+        'Excurcionista',
+        'Guia',
+    ];
+
+
+    const data1 = {
+        labels: labels1,
+        datasets: [
+            {
+                label: '',
+                backgroundColor: 'gray',
+                borderColor: 'black',
+                data: ['27', '13', '23', '14', '17', '21'],
+            },]
+
+    };
+
+    const config1 = {
+        type: 'bar',
+        data: data1,
+        options: {},
+    };
+
+
+    const myChart1 = new Chart(
+        document.getElementById('myChart1'),
+        config1
+    );
+
+    function trilha() {
+        seleçao_trilha.style.display = ""
+        seleçao_grafico.style.display = "none"
+        seleçao_mestrados.style.display = "none"
+
+
+    }
+    function grafico() {
+
+        seleçao_trilha.style.display = "none"
+        seleçao_grafico.style.display = ""
+        seleçao_mestrados.style.display = "none"
+
+        var select = select_grafico.value;
+
+        if (select == 'barra') {
+            seleçao_barra.style.display = "";
+            seleçao_porcentagem.style.display = "none";
+        } else {
+            seleçao_barra.style.display = "none"
+            seleçao_porcentagem.style.display = ""
+        }
+
+    }
+    function mestrado() {
+        seleçao_trilha.style.display = "none"
+        seleçao_grafico.style.display = "none"
+        seleçao_mestrados.style.display = ""
+
+    }
+</script>
+
+<script>
+    
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Amigo', 27],
+            ['Companheiro', 13],
+            ['Pesquisador', 23],
+            ['Pioneiro', 14],
+            ['Excursionista', 17],
+            ['guia', 21]
+        ]);
+
+        var options = {
+
+            is3D: true,
+            backgroundColor: '',
+            colors: ['#004BA4', '#A10000', '#0E6700', '#6A6A6A', '#700097', '#EAB600'],
+            fontSize: 15,
+            height: 370,
+            width: 800,
+
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+
+</script>

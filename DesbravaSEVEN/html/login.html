@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesbravaSeven || Login</title>
+    <link rel="icon" href="../css/imgs/logotipo.png">
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/login.js"></script>
+</head>
+
+<body>
+    <div class="pg1">
+        <div class="navbar">
+            <div class="container_navbar">
+                <div class="divlogo">
+                    <a href="index.html"> <img src="../css/imgs/logotiponavbar.png"> </a>
+                </div>
+                <div class="opçoes_navbar">
+                    <div><a href="https://clubes.adventistas.org/br/"> Encontre um clube </a></div>
+                    <div><a href="index.html">Inicio</a></div>
+
+                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@800&display=swap"
+                        rel="stylesheet">
+                </div>
+            </div>
+        </div>
+        <div class="conteudo">
+            <div class="container_conteudo">
+                <div class="container_cadastro">
+                    <div class="container_formularios">
+                        <div class="nome_cadastar">Login</div>
+
+                        <div style=" font-size:34px;">Faixa em dia?</div>
+                        <div class="inputs">
+
+                            <dv class="inputs_nome">
+                                <div  style="display:flex; justify-content: space-between;">E-mail<div id="erro_email" style="color: red; font-size: 15px; font-family: monospace"></div></div>
+                                <input class="input2" type="email" ; placeholder="Email" id="input_email" onblur="validar_email()">
+                            </dv>
+                            <div class="inputs_nome">
+                                <div style="display:flex; justify-content: space-between;">Senha<div id="erro_senha" style="color: red; font-size: 15px; font-family: monospace"></div></div>
+                                <input class="input3" type="password" ; placeholder="Passoword" id="input_senha" onblur="validar_senha()">
+                            </div>
+                        </div>
+
+
+                        <div class="botao_cadastrar">
+                            <button onclick="logar()">Entrar</button>
+                                <div><a href="cadastro.html">Não possui conta?</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container_slogan">
+                    <div class="letras_slogan">Venha</div>
+                    <div class="letras_slogan">Desbravar</div>
+                    <!-- <div class="letras_slogan">bravar</div> -->
+                    <div class="letras_slogan">o mundo!</div>
+                </div>
+            </div>
+        </div>
+        <div class="rodape">
+            <div> COPYRIGHT © | 2022 - DESBRAVA SEVEN S.A.</div>
+            <div>TODOS OS DIREITOS RESEREVADOS.</div>
+        </div>
+    </div>
+</body>
+
+</html>
