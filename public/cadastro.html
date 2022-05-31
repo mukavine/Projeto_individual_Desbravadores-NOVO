@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesbravaSeven || Cadastro</title>
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="icon" href="css/imgs/logotipo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <script src="../js/cadastro.js"></script> -->
+    <script src="js/funcoes.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="pg1">
+    <div class="navbar">
+        <div class="container_navbar">
+            <div class="divlogo">
+               <a href="index.html"> <img src="../css/imgs/logotiponavbar.png"> </a>
+            </div>
+            <div class="opçoes_navbar">
+                <div ><a href="https://clubes.adventistas.org/br/"> Encontre um clube </a></div>
+                <div ><a href="index.html">Inicio</a></div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="conteudo" >
+      <div class="container_conteudo">
+          <div class="container_cadastro" >
+              <div class="container_formularios">
+                  <div class="nome_cadastar">Cadastrar</div>
+                  
+                 
+                    <!-- <div class="inputs"> -->
+                        <div class="inputs_nome" id="div1">
+                            <div style="display:flex; justify-content: space-between;">Nome<div id="erro_nome" style="color: red; font-size: 15px; font-family: monospace"></div></div>
+                            <input class="input1" type="text"; placeholder="Username" id="input_username" onblur="validar_nome()">
+                        </div>
+                        <dv class="inputs_nome">
+                          <div style="display:flex; justify-content: space-between;">E-mail<div id="erro_email" style="color: red; font-size: 15px; font-family: monospace"></div></div>
+                          <input class="input2" type="email"; placeholder="Email" id="input_email" onblur="validar_email()">
+                        </dv>
+                        <div class="inputs_nome">
+                          <div  style="display:flex; justify-content: space-between;">Senha<div id="erro_senha" style="color: red; font-size: 15px; font-family: monospace"></div></div>  
+                          <input class="input3" type="password"; placeholder="Passoword" id="input_senha" onblur="validar_senha()">
+                        </div>
+                        <div class="inputs_nome">
+                            <div  style="display:flex; justify-content: space-between;">Confirmar senha<div id="erro_confirmar_senha" style="color: red; font-size: 15px; font-family: monospace"></div></div>  
+                            <input class="input3" type="password"; placeholder="Passoword" id="input_confirmar_senha" onblur="validar_confirmar_senha()">
+                          </div>
+                      <!-- </div> -->
+                
+
+                    <div class="botao_cadastrar">
+                        <button onclick="cadastrar()">Criar conta</button>
+                        <div><a href="login.html">Ja possui uma conta?</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container_slogan">
+                <div class="letras_slogan">Venha</div>
+                <div class="letras_slogan">Desbravar</div>
+                <!-- <div class="letras_slogan">bravar</div> -->
+                <div class="letras_slogan">o mundo!</div>
+            </div>
+    </div>  
+    </div>
+    <div class="rodape">
+        <div> COPYRIGHT © |  2022  - DESBRAVA SEVEN  S.A.</div>
+        <div>TODOS OS DIREITOS RESEREVADOS.</div>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+
+var nome_validado = false;
+var email_validado = false;
+var senha_validada = false;
+var confirmar_senha_validada = false;
+
+function validar_nome(){
+
+    var nome = input_username.value.toLowerCase().trimStart().trimEnd();
+    
+    
+    
+    // Validaçoes do nome
+    if(nome.length < 5 ){
+       input_username.style.border = '1px solid red'
+        erro_nome.innerHTML = `Tamanho minimo "5" `
+    } else if(
+       nome.indexOf(0) > -1 
+    || nome.indexOf(1) > -1 
+    || nome.indexOf(2) > -1 
+    || nome.indexOf(3) > -1 
+    || nome.indexOf(4) > -1 
+    || nome.indexOf(5) > -1 
+    || nome.indexOf(6) > -1 
+    || nome.indexOf(7) > -1
+    || nome.indexOf(8) > -1
+    || nome.indexOf(9) > -1){
+       input_username.style.border = '1px solid red'
+       erro_nome.innerHTML = `Nome não deve conter numeros `
+    } else if( nome.indexOf(',') > -1 ||  nome.indexOf('.') > -1){
+        input_username.style.border = '1px solid red'
+        erro_nome.innerHTML = `Nome não deve conter "." ou "," `
+    }
+    else{
+       input_username.style.border = ''
+        erro_nome.innerHTML = ``
+        nome_validado = true
+    }
+}
+
+    function validar_email(){
+
+        var email = input_email.value.toLowerCase().trimStart().trimEnd();
+
+    // Validaçoes email
+    if(email.indexOf('@')  == -1 ){
+        input_email.style.border = '1px solid red'
+        erro_email.innerHTML = `Email deve ter "@" `
+    } else if(email.indexOf('.com')  == -1 ){
+        input_email.style.border = '1px solid red'
+        erro_email.innerHTML = `Email deve ter ".com"`
+    }else if(email.length < 12){
+        input_email.style.border = '1px solid red'
+        erro_email.innerHTML = `tamanho minimo "12"`
+    }else{
+        input_email.style.border = ''
+        erro_email.innerHTML = ``
+        email_validado = true;
+    }
+}
+    
+    function validar_senha(){
+
+    var senha = input_senha.value.toLowerCase();
+
+    // Validaçoes senha
+    if(senha.length < 8){
+        input_senha.style.border = '1px solid red'
+        erro_senha.innerHTML = `Minimo de 8 caracters`
+    }else if(senha.startsWith (" ") || senha.endsWith(" ")){
+        input_senha.style.border = '1px solid red'
+        erro_senha.innerHTML = `Caracters a mais`
+    } else if( 
+       senha.indexOf(0) == -1 
+    && senha.indexOf(1) == -1 
+    && senha.indexOf(2) == -1 
+    && senha.indexOf(3) == -1 
+    && senha.indexOf(4) == -1 
+    && senha.indexOf(5) == -1 
+    && senha.indexOf(6) == -1 
+    && senha.indexOf(7) == -1
+    && senha.indexOf(8) == -1
+    && senha.indexOf(9) == -1){
+       input_senha.style.border = '1px solid red'
+       erro_senha.innerHTML = `Senha deve conter números `
+    } else{
+        input_senha.style.border = ''
+        erro_senha.innerHTML = ``
+        senha_validada = true;
+    }
+    }
+
+function validar_confirmar_senha(){
+    
+    var confirmaçao = input_confirmar_senha.value.toLowerCase()
+    var senha = input_senha.value.toLowerCase();
+
+    if(confirmaçao.startsWith (" ") ||confirmaçao.endsWith(" ")){
+        input_confirmar_senha.style.border = '1px solid red'
+        erro_confirmar_senha.innerHTML = `Caracters a mais`
+    } else if ( confirmaçao == senha ){
+        input_confirmar_senha.style.border = ''
+        erro_confirmar_senha.innerHTML = ``
+        confirmar_senha_validada = true;
+    } else{
+        input_confirmar_senha.style.border = '1px solid red'
+        erro_confirmar_senha.innerHTML = `Senhas divergentes`
+    }
+}
+
+function cadastrar(){
+
+    // aguardar();
+    
+
+if(nome_validado == true && email_validado == true && senha_validada == true && confirmar_senha_validada == true){
+   
+
+//Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+   var nomeVar = input_username.value;
+   var emailVar = input_email.value;
+   var senhaVar = input_senha.value;
+
+//    setInterval(sumirMensagem, 5000)
+
+}else{
+
+    
+    
+if(nome_validado == false){
+    input_username.style.border = '1px solid red'
+}if(email_validado == false){
+    input_email.style.border = '1px solid red'
+}if(senha_validada == false){
+    input_senha.style.border = '1px solid red'
+}if(confirmar_senha_validada == false){
+    input_confirmar_senha.style.border = '1px solid red'
+}
+
+// finalizarAguardar();
+            return false;
+
+}
+
+  // Enviando o valor da nova input
+  fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                // cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+                
+                limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+
+}
+
+// function sumirMensagem() {
+//         cardErro.style.display = "none"
+//     }
+
+</script>

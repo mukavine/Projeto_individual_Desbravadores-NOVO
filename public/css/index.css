@@ -1,0 +1,480 @@
+body{
+    margin: 0%;
+    padding: 0%;
+    
+}
+.pg1{
+    height: 100vh;
+}
+.pg1 .navbar{
+background-color: rgb(0, 0, 0);
+height: 11%;
+display: flex;
+justify-content: center;
+}
+.pg1 .container_navbar{
+    height: 100%;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.pg1 .divlogo {
+    height: 100%;
+    width: 11%;
+}
+.pg1 .divlogo img{
+    width:100%;
+    height: 100%;
+}
+.pg1 .opçoes_navbar{
+color: white;
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 20%;
+font-size:larger;
+font-family: sans-serif;
+}
+.pg1 a{
+    color: white;
+}
+.pg1 .link_atual{
+    font-weight: bolder;
+    
+}
+ .pg1 .conteudo{
+height: 89%;
+background-image: url('imgs/foto\ lenço.png'); 
+background-size: cover;
+display: flex;
+justify-content: center;
+}
+.pg1 .container_conteudo{
+    height: 100%;
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.pg1 .quadrado_do_container{
+height: 78%;
+width: 100%;
+margin-bottom: 3%;
+display: flex;
+justify-content: space-between;
+border-left: 5px solid black;
+padding-bottom: 1%;
+}
+.pg1 .esquerda_quadrado{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 2%;
+}
+.pg1 .textos_esquerda{
+height: auto;
+font-size:48px;
+font-family: sans-serif;
+font-weight:600;
+margin-top: 8%;
+}
+.pg1 .video_texto{
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.pg1 .faça_parte{
+    font-size:28px;
+    font-family: sans-serif;
+    font-weight:600;
+}
+.pg1 .video{
+    background-color: black;
+    height: 87%;
+    width: 76%;
+   border-radius: 5px;
+   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 1);
+}
+.pg1 video{
+    height: 100%;
+    width: 100%;
+}
+.pg1  video:hover{
+    height: 101%;
+    width: 101% ;
+   transition:0.3s;
+}
+.pg1 .direita_quadrado{
+    height: 100%;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.pg1 .texto_direita{
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-start;
+    font-size:30px;
+    font-family: sans-serif;
+    font-weight:600;
+}
+.pg1 .botao_direita{
+    height: 60%;
+}
+.pg1 button{
+    background-color: black;
+    color: white;
+    height: 20%;
+    width: 65%;
+    border-radius: 15px;
+    font-size:26px;
+    font-family: sans-serif;
+    font-weight:200;
+    border: 0px;
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+.pg1  button:hover{
+    background-color: #1f1f1f;
+   transition:0.3s;
+}
+
+/* segunda pagina da tela index */
+.pg2{
+    height: 101vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('imgs/marchando.png'); 
+    background-size: cover;
+}
+.pg2 .teto{
+height: 28%;
+display: flex;
+justify-content: center;
+width: 100%;
+background-color: #393939;
+}
+.pg2 .container_teto{
+    height: 100%;
+    width: 85%;
+    display: flex;
+   justify-content: space-around;
+   align-items: center;
+   color: white;
+   font-family: sans-serif;
+   font-size: 25px;
+   font-weight: 200;
+   font-weight: bolder;
+}
+.pg2 .circulo_fisico{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.pg2 .circulo_mental{
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+}
+.pg2 .circulo_espiritual{
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+}
+.pg2 .fotos_circulos{
+    height: 60%;
+}
+.pg2 .fotos_circulos img{
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 50);
+    border-radius: 70px;
+    cursor: pointer;
+   
+}
+.pg2 .fotos_circulos img:hover{
+height: 105%;
+transition:0.4s;
+}
+.pg2 .teto img{
+    height: 100%;
+    width: 100%;
+}
+.pg2 .corpo{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.pg2 #container_corpo{
+    height: 100%;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.pg2 .tres_setas{
+display: flex;
+justify-content: space-between;
+align-items: flex-end;
+width: 94%;
+height: 60%;
+
+}
+.pg2 .setas{
+height: 65%;
+
+}
+.pg2 .texto_navegue{
+    font-size: 60px;
+    font-family: sans-serif;
+    font-weight: 600;
+    
+}
+.pg2 .setas img{
+    height: 100%;
+    width: 100%; 
+    
+}
+#container_fisico{
+    height: 92%;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+}
+#container_mental{
+    height: 92%;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+}
+#container_espiritual{
+    height: 92%;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+}
+.pg2 .imagem_exemplo{
+height: 100%;
+width: 35%;
+}
+.imagem_exemplo img{
+height: 100%;
+width: 100%;
+border-radius: 50px;
+}
+.pg2 .exemplos_atividades{
+    height: 100%;
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 32px;
+    font-family: sans-serif;
+    font-weight: bolder;
+}
+.pg2 .textos_esquerdo{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.pg2 .textos_direito{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 3px solid black;
+    padding-left: 3%;
+}
+.pg2 .texto_cima{
+margin-top: 10%;
+    height: 50%;
+    width: 100%;
+}
+.pg2 .texto_baixo{
+    height: 50%;
+    width: 100%;
+}
+/* terceira pagina da tela index */
+
+.pg3{
+    height: 100vh;
+   
+    background-color: #C4C4C4;
+}
+.pg3 .teto{
+   
+    height: 16%;
+    background-color: #818181;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pg3 .container_teto{
+   
+    width: 85%;
+    height: 70%;
+    background-color: black;
+    border-radius: 15px;
+    color: rgb(255, 230, 0);
+    font-size: 50px;
+    font-family:Impact;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pg3 .conteudo{
+height: 78%;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+}
+.pg3 .container_conteudo{
+height: 80%;
+width: 90%;
+display: flex;
+justify-content: space-between;
+
+margin-top: 3%;
+}
+.pg3 .fotos_textos{
+    
+height: 100%;
+width: 69%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.pg3 .container_fotos_textos{
+    
+height: 88%;
+width: 23%;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+}
+.pg3 .foto{
+    height: 61%;
+    width: 100%;
+}
+.pg3 .foto img{
+    border-radius: 15px;
+}
+.pg3 .foto img:hover{
+    height: 102%;
+}
+.pg3 .texto{
+    height: 38%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.explicaçao_fotos{
+    font-size: 21px;
+}
+.pg3 .sobre_mim{
+    border: solid rgb(0, 0, 0) 2px;
+    height: 100%;
+width: 28%;
+border-radius: 10px;
+}
+.pg3 .texto_sobre{
+   margin-top: 2%;
+     height: 10%;
+      font-size: 40px;
+       display: flex;
+        justify-content: center;
+}
+.pg3 .foto_perfil{
+    height: 33%;
+      display: flex;
+       justify-content: center;
+        align-items: center;
+        margin-top: 3%;
+}
+.pg3 .foto_perfil img{
+    border-radius:50%;
+     height: 100%;
+      width:50;
+}
+.pg3 .container_texto{
+    
+     height: 40%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+.pg3 .textos{
+    width: 90%;
+     height: 87%;
+       display: flex;
+        flex-direction: column;
+         justify-content: flex-start;
+          align-items: center;
+           font-size: 25px;
+}
+.pg3 .ultimo_texto{
+    margin-bottom: 8%;
+}
+.pg3 .redes_sociais{
+    
+     height: 11%; display:flex;
+      justify-content:space-evenly;
+       align-items: center;
+}
+.pg3 .redes_sociais img{
+    height: 100%;
+     width:100%
+}
+.pg3 .div_redes{
+    height: 93%;
+     width:15%;
+}
+.pg3 .div_insta{
+    height: 100%; width:16%;
+}
+.pg3 .div_texto{
+    height: 93%;
+     width:15%;
+}
+.pg3 .rodape{
+    height: 6%;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 17px;
+    font-family: sans-serif;
+}
+
+
+
+
+
+
+

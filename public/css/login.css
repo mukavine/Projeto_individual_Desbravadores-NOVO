@@ -1,0 +1,176 @@
+body{
+    margin: 0%;
+    padding: 0%;
+}
+.pg1{
+    height: 100vh;
+}
+.navbar{
+background-color: rgb(0, 0, 0);
+height: 11%;
+display: flex;
+justify-content: center;
+}
+.container_navbar{
+    height: 100%;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.divlogo {
+    height: 100%;
+    width: 11%;
+}
+.divlogo img{
+    width:100%;
+    height: 100%;
+}
+.opçoes_navbar{
+color: white;
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 20%;
+font-size:larger;
+font-family: sans-serif;
+}
+a{
+    color: white;
+}
+.conteudo{
+    height: 83%;
+   display: flex;
+   justify-content: flex-end;
+   background-image: url('imgs/Desbravadores.png'); 
+   mask-repeat: no-repeat;
+   background-size: cover;
+}
+.container_conteudo{
+    width: 77%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container_cadastro{
+height: 74%;
+width: 40%;
+background-color: #6C6C6C;
+border-radius: 15px;
+display: flex;
+justify-content: center;
+align-items: center;
+box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+}
+.container_formularios{
+    height: 94%;
+    width: 78%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.nome_cadastar{
+    width: 100%;
+    font-weight: bolder;
+    color: #FFB423;
+    font-size: 60px;
+    font-family: sans-serif;
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 28%;
+    width: 100%;
+   
+}
+input {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    border: 0;
+    padding-top: 2px;
+    font-size: 15px;
+    /* outline: 0; */
+}
+.inputs_nome{
+    width: 100%;
+    height: auto;
+}
+.input1{
+    background-image: url('imgs/usarname.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 5%;
+    background-position-x: 5px;
+    padding-left: 30px;
+    width: 92%;
+}
+.input2{
+    background-image: url('imgs/yes.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 5%;
+    padding-left: 30px;
+    background-position-x: 5px;
+    width: 92%;
+}
+.input3{
+    background-image: url('imgs/cadeado.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 5%;
+    padding-left: 30px;
+    background-position-x: 5px;
+    width: 92%;
+}
+.botao_cadastrar{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 17%;
+}
+button {
+    height: 63%;
+    width: 90%;
+    border-radius: 17px;
+    background-color:  #1F1F1F;
+    color: white;
+    font-weight: bolder;
+    font-size: 25px;
+    font-family: sans-serif;
+    border: 0px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #383838;
+   transition:0.3s;
+}
+.container_slogan{
+    height: 60%;
+    width: 40%;
+    font-size: 80px;
+    font-weight: bolder;
+    font-family: 'roboto flex' ;
+}
+.letras_slogan{
+    height: 80px;
+}
+.rodape{
+    height: 6%;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 17px;
+    font-family: sans-serif;
+}
+
