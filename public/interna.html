@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="botao_sair">
-                <a href="../html/index.html"><button onclick="sair()">Sair</button></a>
+                <a href="index.html"><button onclick="sair()">Sair</button></a>
             </div>
 
         </div>
@@ -136,7 +136,6 @@
                     </div>
                     <div class="container_grafico1" id="seleçao_barra">
                         <canvas id="myChart1" class="canvas1"></canvas>
-
                     </div>
                     <div class="container_grafico2" id="seleçao_porcentagem">
                         <div id='piechart' style="height:  auto; width: auto;  "></div>
@@ -189,10 +188,16 @@
         labels: labels1,
         datasets: [
             {
-                label: '',
-                backgroundColor: 'gray',
+                label: 'Quantidade especialidades totais',
+                backgroundColor:  ['#009BA4', '#A10000', '#0E6700', '#6A6A6A', '#700097', '#EAB600'],
                 borderColor: 'black',
                 data: ['27', '13', '23', '14', '17', '21'],
+            },
+            {
+                label: 'Quantidade atuais',
+                backgroundColor:  ['#004BA4', '#A19000', '#0E6700', '#6A6A6A', '#700097', '#EAB600'],
+                borderColor: 'black',
+                data: ['23', '10', '15', '10', '15', '17'],
             },]
 
     };
@@ -264,8 +269,9 @@
             backgroundColor: '',
             colors: ['#004BA4', '#A10000', '#0E6700', '#6A6A6A', '#700097', '#EAB600'],
             fontSize: 15,
-            height: 370,
+            height: 450,
             width: 800,
+            title: 'Quantidade de especialidades totais'
 
         };
 

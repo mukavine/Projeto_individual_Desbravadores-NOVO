@@ -1,0 +1,88 @@
+
+
+models 
+
+function puxar_voto() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+    SELECT v.nome , count(fkVoto) as 'voto_recebido' FROM usuario join voto as v on idVoto = fkVoto group by v.nome
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+module.exports = {
+    entrar,
+    cadastrar,
+    listar,
+    cadastrar_voto,
+    puxar_voto
+};
+
+controlers
+
+function puxar_voto(req, res) {
+    usuarioModel.puxar_voto()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+
+module.exports = {
+    entrar,
+    cadastrar,
+    listar,
+    testar,
+    cadastrar_voto,
+    puxar_voto
+}
+
+roots
+
+router.get("/puxar_voto", function (req, res) {
+    usuarioController.puxar_voto(req, res);
+});
+
+
+interna dashboard
+
+fetch("/usuarios/puxar_voto").then(function (resposta) {
+    if (resposta.ok) {
+
+        resposta.json().then(function (resposta) {
+            console.log("Dados recebidos: ", JSON.stringify(resposta));
+            var teste = resposta
+            qtd_votos1 = resposta[0].voto_recebido;
+            nome_influ1= resposta[0].nome;
+
+            if (resposta[1]) {
+                qtd_votos2  = resposta[1].voto_recebido;
+                nome_influ2 = resposta[1].nome;
+            }
+            if (resposta[2]) {
+                qtd_votos3  = resposta[2].voto_recebido;
+                nome_influ3 = resposta[2].nome;
+            }
+
+          
+
+            graficos1()
+        });
+    } else {
+        throw ('Houve um erro na API!');
+    }
+}).catch(function (resposta) {
+    console.error(resposta);
+});
