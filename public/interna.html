@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/interna.js"></script>
     <!-- <script  src="https://www.gstatic.com/charts/loader.js"></script> -->
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
 </head>
@@ -55,7 +56,7 @@
                     </div>
                     <div class="opçoes">
                         <select id="select_especialidade">
-                            <option >Escolha</option>
+                            <option selected disabled>Escolha</option>
                             <option value="1">Cães</option>
                             <option value="2">Fogueiras</option>
                             <option value="3">Pioneiria</option>
@@ -147,6 +148,7 @@
                     </div>
                     <div class="container_grafico1" id="seleçao_barra">
                         <canvas id="myChart1" class="canvas1"></canvas>
+                        <!-- <canvas id="canvas_grafico"></canvas> -->
                     </div>
                     <div class="container_grafico2" id="seleçao_porcentagem">
                         <div id='piechart' style="height:  auto; width: auto;  "></div>
@@ -185,7 +187,78 @@
 </html>
 
 <script>
-    const labels1 = [
+
+    // const labels1 = [
+    //     'Amigo',
+    //     'Companheiro',
+    //     'Pesquisador',
+    //     'Pioneiro',
+    //     'Excurcionista',
+    //     'Guia',
+    // ];
+
+    // const data1 = {
+    //     labels: labels1,
+    //     datasets: [
+    //         {
+    //             label: 'Qtd. especialidades totais',
+    //             backgroundColor:  ['rgb(24, 24, 24)'],
+    //             borderColor: 'black',
+    //             data: ['8', '12', '10', '15', '15', '17'],
+    //         },
+    //         {
+    //             label: 'Qtd. especialidades concluidas',
+    //             backgroundColor:  [ 'rgb(116, 116, 116)'],
+    //             borderColor: 'black',
+    //             data: ['3', '10', '8', '5', '12', '13'],
+    //         },],
+            
+    // };
+
+    // const config1 = {
+    //     type: 'bar',
+    //     data: data1,
+    //     options: {},
+    // };
+    
+    // const myChart1 = new Chart(
+    //     document.getElementById('myChart1'),
+    //     config1
+    // );
+
+    function obterDadosGrafico(idAquario) {
+        alterarTitulo(idAquario)
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    // plotarGrafico(resposta, idAquario);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    plotarGrafico()
+
+    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+    function plotarGrafico() {
+        console.log('iniciando plotagem do gráfico...');
+
+        const labels1 = [
         'Amigo',
         'Companheiro',
         'Pesquisador',
@@ -194,37 +267,86 @@
         'Guia',
     ];
 
+        var dados = {
+            labels: labels1,
+            datasets: [
+                {
+                    yAxisID: 'y-umidade',
+                    label: 'Umidade',
+                    borderColor: '#F234',
+                    backgroundColor: ['rgb(24, 24, 24)'],
+                    fill: false,
+                    type: 'line',
+                    data: ['8', '12', '10', '15', '15', '17'] // dados fixos
+                },
+                {
+                    yAxisID: 'y-temperatura',
+                    label: 'Temperatura',
+                    borderColor: '#FFF',
+                    backgroundColor: [ 'rgb(116, 116, 116)'],
+                    fill: true,
+                    data: ['3', '10', '8', '5', '12', '13']
+                }
+            ]
+        };
 
-    const data1 = {
-        labels: labels1,
-        datasets: [
-            {
-                label: 'Qtd. especialidades totais',
-                backgroundColor:  ['rgb(24, 24, 24)'],
-                borderColor: 'black',
-                data: ['8', '12', '10', '15', '15', '17'],
-            },
-            {
-                label: 'Qtd. especialidades concluidas',
-                backgroundColor:  [ 'rgb(116, 116, 116)'],
-                borderColor: 'black',
-                data: ['3', '10', '8', '5', '12', '13'],
-            },],
-            
-    };
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados.labels.push(registro.nome_especialidade);
+            // dados.datasets[0].data.push(registro.umidade);
+            dados.datasets[1].data.push(registro.temperatura); // count
+        }
 
-    const config1 = {
-        type: 'bar',
-        data: data1,
-        options: {},
-    };
-    
+        console.log(JSON.stringify(dados));
+
+        var ctx = myChart1.getContext('2d'); // colocar o nome do canvas
+        window.grafico_linha = Chart.Bar(ctx, {
+            data: dados,
+            options: {
+                responsive: true,
+                animation: { duration: 500 },
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                    display: false,
+                    text: 'Dados capturados'
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-temperatura',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 20,
+                            min: 0
+                        }
+                    }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-umidade',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 20,
+                            min: 0
+                        },
+
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                    }],
+                }
+            }
+        });
+
+        // setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+    }
+</script>
 
 
-    const myChart1 = new Chart(
-        document.getElementById('myChart1'),
-        config1
-    );
+<script>
 
     function trilha() {
         seleçao_trilha.style.display = ""

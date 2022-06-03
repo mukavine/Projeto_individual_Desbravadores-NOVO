@@ -4,7 +4,7 @@ function inserirE(especialidade, id) {
     
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function inserir()");
     var instrucao = `
-    INSERT INTO requisito (fk_usuario, fk_especialidade) VALUES (${id},${especialidade});
+    INSERT INTO faixa (fk_usuario, fk_especialidade) VALUES (${id},${especialidade});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -37,6 +37,5 @@ function cadastrar(nome, email, senha) {
 module.exports = {
     entrar,
     cadastrar,
-    
     inserirE,
 };
