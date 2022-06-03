@@ -79,10 +79,18 @@ select u.nome_usuario, e.nome_especialidade
  inner join especialidade as e on id_especialidade = fk_especialidade;
 
 
-select c.nome_classe, e.nome_especialidade
+select distinct(c.nome_classe), count(e.nome_especialidade) as qtd_especialidade
 from usuario as u 
 inner join faixa as f on id_usuario = f.fk_usuario
 inner join especialidade as e on id_especialidade = f.fk_especialidade
 inner join requisito as r  on id_especialidade = r.fk_especialidade
-inner join classe as c on id_classe = r.fk_classe
-where id_usuario = 1 and id_classe = 1;
+inner join classe as c on id_classe = r.fk_classe where id_usuario = 3 group by c.nome_classe;
+
+
+-- select c.nome_classe, e.nome_especialidade
+-- from usuario as u 
+-- inner join faixa as f on id_usuario = f.fk_usuario
+-- inner join especialidade as e on id_especialidade = f.fk_especialidade
+-- inner join requisito as r  on id_especialidade = r.fk_especialidade
+-- inner join classe as c on id_classe = r.fk_classe
+-- where id_usuario = 1 and id_classe = 1;

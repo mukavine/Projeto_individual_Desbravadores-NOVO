@@ -270,32 +270,33 @@
         var dados = {
             labels: labels1,
             datasets: [
-                {
-                    yAxisID: 'y-umidade',
-                    label: 'Umidade',
-                    borderColor: '#F234',
-                    backgroundColor: ['rgb(24, 24, 24)'],
-                    fill: false,
-                    type: 'line',
-                    data: ['8', '12', '10', '15', '15', '17'] // dados fixos
-                },
-                {
+            {
                     yAxisID: 'y-temperatura',
-                    label: 'Temperatura',
+                    label: 'qtd. concluidas',
                     borderColor: '#FFF',
                     backgroundColor: [ 'rgb(116, 116, 116)'],
-                    fill: true,
+                    fill: false,
+                    type: 'line',
                     data: ['3', '10', '8', '5', '12', '13']
-                }
+                },
+                {
+                    yAxisID: 'y-umidade',
+                    label: ' qtd. total',
+                    borderColor: '#F234',
+                    backgroundColor: 'rgb(24, 24, 24)',
+                    fill: true,
+                    data: ['8', '12', '10', '15', '15', '17'] // dados fixos
+                },
+                
             ]
         };
 
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            dados.labels.push(registro.nome_especialidade);
-            // dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura); // count
-        }
+        // for (i = 0; i < resposta.length; i++) {
+        //     var registro = resposta[i];
+        //     dados.labels.push(registro.nome_especialidade);
+        //     // dados.datasets[0].data.push(registro.umidade);
+        //     dados.datasets[1].data.push(registro.temperatura); // count
+        // }
 
         console.log(JSON.stringify(dados));
 
@@ -452,7 +453,7 @@ var id_usuario =  sessionStorage.ID_USUARIO;
 
                 setTimeout(() => {
                     window.location = "interna.html";
-                }, "2000")
+                }, "100")
 
                 mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
