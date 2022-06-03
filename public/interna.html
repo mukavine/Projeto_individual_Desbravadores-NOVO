@@ -54,17 +54,28 @@
                         <div style="margin-left: 5%;">atualize seu desempenho nas classes.</div>
                     </div>
                     <div class="opçoes">
-                        <select>
-                            <option value="1">Escolha</option>
+                        <select id="select_especialidade">
+                            <option >Escolha</option>
+                            <option value="1">Cães</option>
                             <option value="2">Fogueiras</option>
                             <option value="3">Pioneiria</option>
                             <option value="4">Computaçao</option>
-                            <option value="5">Ordem unida</option>
+                            <option value="5">Ecologia</option>
                             <option value="6">Repteis</option>
-                            <option value="7">Coraçao e circulaçao</option>
+                            <option value="7">Coraçao</option>
                             <option value="8">Felinos</option>
                             <option value="9">Escultura</option>
-                            <option value="10">Flores</option>
+                            <option value="10">Temperança</option>
+                            <option value="11">Nós</option>
+                            <option value="12">Acampamento</option>
+                            <option value="13">Mordomia</option>
+                            <option value="14">Aves</option>
+                            <option value="15">Répteis</option>
+                            <option value="16">Orçamento</option>
+                            <option value="17">Excurcionismo</option>
+                            <option value="18">Libras</option>
+                            <option value="19">Astronimia</option>
+                            <option value="20">Cidadania</option>
                         </select>
                         <button onclick="cadastrar_especialidade()">Cadastrar</button>
                     </div>
@@ -115,15 +126,15 @@
                 <div class="enunciado">Compare as classes, e mensure sua dificuldade.</div>
                 <div class="analitics">
                     <div class="metrica facil">
-                        <div>12</div>
+                        <div>10</div>
                         <div class="nivel">Fácil</div>
                     </div>
                     <div class="metrica medio">
-                        <div>13 a 22</div>
+                        <div>11 a 15</div>
                         <div class="nivel">Médio</div>
                     </div>
                     <div class="metrica dificil" onclick="drawChart()">
-                        <div>23</div>
+                        <div>16</div>
                         <div class="nivel">Difícil</div>
                     </div>
                 </div>
@@ -188,18 +199,18 @@
         labels: labels1,
         datasets: [
             {
-                label: 'Quantidade especialidades totais',
-                backgroundColor:  ['#009BA4', '#A10000', '#0E6700', '#6A6A6A', '#700097', '#EAB600'],
+                label: 'Qtd. especialidades totais',
+                backgroundColor:  ['rgb(24, 24, 24)'],
                 borderColor: 'black',
-                data: ['27', '13', '23', '14', '17', '21'],
+                data: ['8', '12', '10', '15', '15', '17'],
             },
             {
-                label: 'Quantidade atuais',
-                backgroundColor:  ['#004BA4', '#A19000', '#0E6700', '#6A6A6A', '#700097', '#EAB600'],
+                label: 'Qtd. especialidades concluidas',
+                backgroundColor:  [ 'rgb(116, 116, 116)'],
                 borderColor: 'black',
-                data: ['23', '10', '15', '10', '15', '17'],
-            },]
-
+                data: ['3', '10', '8', '5', '12', '13'],
+            },],
+            
     };
 
     const config1 = {
@@ -207,6 +218,7 @@
         data: data1,
         options: {},
     };
+    
 
 
     const myChart1 = new Chart(
@@ -286,4 +298,54 @@
 div_puxar_nome.innerHTML = sessionStorage.NOME_USUARIO;
 
 
+</script>
+
+<script>
+
+function cadastrar_especialidade(){
+
+var especialidadeVar = select_especialidade.value;
+var id_usuario =  sessionStorage.ID_USUARIO;
+
+ // Enviando o valor da nova input
+ fetch("/usuarios/inserir", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                especialidadeServer: especialidadeVar,
+                id_usuarioServer: id_usuario,
+                
+                
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                // cardErro.style.display = "block";
+
+                setTimeout(() => {
+                    window.location = "interna.html";
+                }, "2000")
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+               
+                
+                limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
 </script>

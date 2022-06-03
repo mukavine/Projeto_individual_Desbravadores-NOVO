@@ -277,7 +277,7 @@ width: 90%;
     color: white;
     font-family: sans-serif;
     font-weight: bold;
-    border: solid 3px black;
+    border: solid 3px rgba(24, 24, 24, 0.5);
 }
 
 .foto_1 {

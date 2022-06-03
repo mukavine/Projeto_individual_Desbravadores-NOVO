@@ -7,8 +7,11 @@ function testar(req, res) {
     res.json("ESTAMOS FUNCIONANDO!");
 }
 
-function listar(req, res) {
-    usuarioModel.listar()
+function inserirE(req, res) {
+    var especialidade = req.body.especialidadeServer;
+    var id = req.body. id_usuarioServer;
+    usuarioModel.inserirE(especialidade, id)
+
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -97,6 +100,8 @@ function cadastrar(req, res) {
 module.exports = {
     entrar,
     cadastrar,
-    listar,
-    testar
+    
+    testar,
+    inserirE,
+
 }

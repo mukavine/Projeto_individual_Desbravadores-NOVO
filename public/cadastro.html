@@ -93,6 +93,9 @@ function validar_nome(){
     if(nome.length < 5 ){
        input_username.style.border = '1px solid red'
         erro_nome.innerHTML = `Tamanho minimo "5" `
+    } else if (nome.length >10 ){
+        input_username.style.border = '1px solid red'
+        erro_nome.innerHTML = `Tamanho maximo "10" `
     } else if(
        nome.indexOf(0) > -1 
     || nome.indexOf(1) > -1 
