@@ -79,6 +79,7 @@
                             <option value="20">Cidadania</option>
                         </select>
                         <button onclick="cadastrar_especialidade()">Cadastrar</button>
+                        <!-- <button onclick="obterDadosGrafico()">grafico</button> -->
                     </div>
                 </div>
                 <div class="classes_cima">
@@ -134,7 +135,7 @@
                         <div>11 a 15</div>
                         <div class="nivel">Médio</div>
                     </div>
-                    <div class="metrica dificil" onclick="drawChart()">
+                    <div class="metrica dificil">
                         <div>16</div>
                         <div class="nivel">Difícil</div>
                     </div>
@@ -186,6 +187,140 @@
 
 </html>
 
+
+<script>
+
+    function trilha() {
+        seleçao_trilha.style.display = ""
+        seleçao_grafico.style.display = "none"
+        seleçao_mestrados.style.display = "none"
+
+
+    }
+    function grafico() {
+        obterDadosGrafico()
+        seleçao_trilha.style.display = "none"
+        seleçao_grafico.style.display = ""
+        seleçao_mestrados.style.display = "none"
+
+        var select = select_grafico.value;
+
+
+        if (select == 'barra') {
+            seleçao_barra.style.display = "";
+            seleçao_porcentagem.style.display = "none";
+        } else {
+            seleçao_barra.style.display = "none"
+            seleçao_porcentagem.style.display = ""
+        }
+
+
+
+    }
+    function mestrado() {
+        seleçao_trilha.style.display = "none"
+        seleçao_grafico.style.display = "none"
+        seleçao_mestrados.style.display = ""
+
+    }
+</script>
+
+<!-- <script>
+    
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Amigo', 27],
+            ['Companheiro', 13],
+            ['Pesquisador', 23],
+            ['Pioneiro', 14],
+            ['Excursionista', 17],
+            ['guia', 21]
+        ]);
+
+        var options = {
+
+            is3D: true,
+            backgroundColor: '',
+            colors: ['#004BA4', '#A10000', '#0E6700', '#6A6A6A', '#700097', '#EAB600'],
+            fontSize: 15,
+            height: 450,
+            width: 800,
+            title: 'Quantidade de especialidades totais'
+
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+
+</script> -->
+
+<script>
+div_puxar_nome.innerHTML = sessionStorage.NOME_USUARIO;
+</script>
+
+<script>
+
+function cadastrar_especialidade(){
+
+var especialidadeVar = select_especialidade.value;
+var id_usuario =  sessionStorage.ID_USUARIO;
+
+ // Enviando o valor da nova input
+ fetch("/usuarios/inserir", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                especialidadeServer: especialidadeVar,
+                id_usuarioServer: id_usuario,
+                
+                
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                // cardErro.style.display = "block";
+
+
+                
+
+                // setTimeout(() => {
+                    window.location.reload
+                // }, "100")
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                
+                
+                limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+
+
+
+    }
+</script>
+
 <script>
 
     // const labels1 = [
@@ -224,22 +359,28 @@
     // const myChart1 = new Chart(
     //     document.getElementById('myChart1'),
     //     config1
-    // );
+    // );.
 
-    function obterDadosGrafico(idAquario) {
-        alterarTitulo(idAquario)
 
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
+// var numeros[].;
 
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+    function obterDadosGrafico() {
+
+        
+        var id_usuarioVar =  sessionStorage.ID_USUARIO;
+
+        // if (proximaAtualizacao != undefined) {
+        //     clearTimeout(proximaAtualizacao);
+        // }
+
+        fetch(`/medidas/ultimas/${id_usuarioVar}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
-
-                    // plotarGrafico(resposta, idAquario);
+                    // resposta.reverse();
+                   numeros=resposta;
+                    plotarGrafico(resposta);
+                    console.log(resposta)
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -250,25 +391,18 @@
             });
     }
 
-    plotarGrafico()
+    
 
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico() {
+    function plotarGrafico(resposta) {
         console.log('iniciando plotagem do gráfico...');
 
-        const labels1 = [
-        'Amigo',
-        'Companheiro',
-        'Pesquisador',
-        'Pioneiro',
-        'Excurcionista',
-        'Guia',
-    ];
+        const labels1 = [];
 
         var dados = {
-            labels: labels1,
+            labels: [],
             datasets: [
             {
                     yAxisID: 'y-temperatura',
@@ -277,7 +411,7 @@
                     backgroundColor: [ 'rgb(116, 116, 116)'],
                     fill: false,
                     type: 'line',
-                    data: ['3', '10', '8', '5', '12', '13']
+                    data: []
                 },
                 {
                     yAxisID: 'y-umidade',
@@ -285,18 +419,18 @@
                     borderColor: '#F234',
                     backgroundColor: 'rgb(24, 24, 24)',
                     fill: true,
-                    data: ['8', '12', '10', '15', '15', '17'] // dados fixos
+                    data: ['5', '9', '9', '12', '10', '7'] // dados fixos
                 },
                 
             ]
         };
 
-        // for (i = 0; i < resposta.length; i++) {
-        //     var registro = resposta[i];
-        //     dados.labels.push(registro.nome_especialidade);
-        //     // dados.datasets[0].data.push(registro.umidade);
-        //     dados.datasets[1].data.push(registro.temperatura); // count
-        // }
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados.labels.push(registro.nome_classe);
+            // dados.datasets[0].data.push(registro.umidade);
+            dados.datasets[0].data.push(registro.qtd_especialidade); // count
+        }
 
         console.log(JSON.stringify(dados));
 
@@ -343,132 +477,5 @@
         });
 
         // setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
-    }
-</script>
-
-
-<script>
-
-    function trilha() {
-        seleçao_trilha.style.display = ""
-        seleçao_grafico.style.display = "none"
-        seleçao_mestrados.style.display = "none"
-
-
-    }
-    function grafico() {
-
-        seleçao_trilha.style.display = "none"
-        seleçao_grafico.style.display = ""
-        seleçao_mestrados.style.display = "none"
-
-        var select = select_grafico.value;
-
-        if (select == 'barra') {
-            seleçao_barra.style.display = "";
-            seleçao_porcentagem.style.display = "none";
-        } else {
-            seleçao_barra.style.display = "none"
-            seleçao_porcentagem.style.display = ""
-        }
-
-    }
-    function mestrado() {
-        seleçao_trilha.style.display = "none"
-        seleçao_grafico.style.display = "none"
-        seleçao_mestrados.style.display = ""
-
-    }
-</script>
-
-<script>
-    
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            ['Amigo', 27],
-            ['Companheiro', 13],
-            ['Pesquisador', 23],
-            ['Pioneiro', 14],
-            ['Excursionista', 17],
-            ['guia', 21]
-        ]);
-
-        var options = {
-
-            is3D: true,
-            backgroundColor: '',
-            colors: ['#004BA4', '#A10000', '#0E6700', '#6A6A6A', '#700097', '#EAB600'],
-            fontSize: 15,
-            height: 450,
-            width: 800,
-            title: 'Quantidade de especialidades totais'
-
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-    }
-
-</script>
-
-<script>
-div_puxar_nome.innerHTML = sessionStorage.NOME_USUARIO;
-
-
-</script>
-
-<script>
-
-function cadastrar_especialidade(){
-
-var especialidadeVar = select_especialidade.value;
-var id_usuario =  sessionStorage.ID_USUARIO;
-
- // Enviando o valor da nova input
- fetch("/usuarios/inserir", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                especialidadeServer: especialidadeVar,
-                id_usuarioServer: id_usuario,
-                
-                
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                // cardErro.style.display = "block";
-
-                setTimeout(() => {
-                    window.location = "interna.html";
-                }, "100")
-
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-               
-                
-                limparFormulario();
-                // finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
-        });
-
-        return false;
     }
 </script>

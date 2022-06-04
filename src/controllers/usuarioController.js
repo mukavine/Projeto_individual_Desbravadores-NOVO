@@ -9,7 +9,7 @@ function testar(req, res) {
 
 function inserirE(req, res) {
     var especialidade = req.body.especialidadeServer;
-    var id = req.body. id_usuarioServer;
+    var id = req.body.id_usuarioServer;
     usuarioModel.inserirE(especialidade, id)
 
         .then(function (resultado) {
