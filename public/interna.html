@@ -29,15 +29,15 @@
                 <div>Seja bem vindo!</div>
             </div>
             <div class="opçoes_painel">
-                <div class="opçoes1" onclick="trilha()">
+                <div class="opçoes1" id="id_trilha" onclick="trilha()">
                     <div class="topico">•</div>
                     <div class="opçao1">Trilha de classes</div>
                 </div>
-                <div class="opçoes2" onclick="grafico()">
+                <div class="opçoes2" id="id_grafico" onclick="grafico()">
                     <div class="topico">•</div>
                     <div class="opçao2">Grafico de especialidades</div>
                 </div>
-                <div class="opçoes3" onclick="mestrado()">
+                <div class="opçoes3" id="id_mestrado" onclick="mestrado()">
                     <div class="topico3">•</div>
                     <div class="opçao3">Mestrados</div>
                 </div>
@@ -85,19 +85,19 @@
                 <div class="classes_cima">
                     <div class="container_classes">
                         <div class=" teste foto_1">
-                            <div class="porcentagem o">13%</div>
+                            <div class="porcentagem" id="div_porcent_amigo">0%</div>
                         </div>
                         <div class="texto">Amigo</div>
                     </div>
                     <div class="container_classes">
                         <div class="teste foto_2">
-                            <div class="porcentagem">27%</div>
+                            <div class="porcentagem" id="div_porcent_companheiro">0%</div>
                         </div>
                         <div class="texto">Companheiro</div>
                     </div>
                     <div class="container_classes">
                         <div class="teste foto_3">
-                            <div class="porcentagem">50%</div>
+                            <div class="porcentagem" id="div_porcent_pesquisador">0%</div>
                         </div>
                         <div class="texto">Pesquisador</div>
                     </div>
@@ -105,19 +105,19 @@
                 <div class="classes_baixo">
                     <div class="container_classes">
                         <div class=" teste foto_4">
-                            <div class="porcentagem">0%</div>
+                            <div class="porcentagem" id="div_porcent_pioneiro">0%</div>
                         </div>
                         <div class="texto">Pioneiro</div>
                     </div>
                     <div class="container_classes">
                         <div class=" teste foto_5">
-                            <div class="porcentagem">72%</div>
+                            <div class="porcentagem" id="div_porcent_excurcionista">0%</div>
                         </div>
                         <div class="texto">Excurcionista</div>
                     </div>
                     <div class="container_classes">
                         <div class="teste foto_6">
-                            <div class="porcentagem">5%</div>
+                            <div class="porcentagem" id="div_porcent_guia">0%</div>
                         </div>
                         <div class="texto">Guia</div>
                     </div>
@@ -159,41 +159,48 @@
 
             </div>
             <div class="container_conteudo conteudo3" id="seleçao_mestrados" style="display:none;">
-              <div class="enunciado">Descubra o tempo de conquista dos mestrados</div>
-              <div class="interaçao">
-                  <div class="container_interaçao">
-                      <div class="inputs">
-                          <div class="conteudo_inputs">
-                              Qtd. de Mestrados:
-                               <br>
-                              <input id="input_mestrado">
-                          </div>
-                          <div class="conteudo_inputs">
-                            Especialidades p/ mês:
-                            <br>
-                           <input id="input_especialidades_por_mes">
-                          </div>
-                      </div>
-                      <button onclick="calcular_tempo()">Calcular tempo</button>
-                  </div>
-              </div>
-              <div class="conteudo_for" id="div_for"></div>
+                <div class="enunciado">Descubra o tempo de conquista dos mestrados</div>
+                <div class="interaçao">
+                    <div class="container_interaçao">
+                        <div class="inputs">
+                            <div class="conteudo_inputs">
+                                Qtd. de Mestrados:
+                                <br>
+                                <input id="input_mestrado">
+                            </div>
+                            <div class="conteudo_inputs">
+                                Especialidades p/ mês:
+                                <br>
+                                <input id="input_especialidades_por_mes">
+                            </div>
+                        </div>
+                        <button onclick="calcular_tempo()">Calcular tempo</button>
+                    </div>
+                </div>
+                <div class="conteudo_for" id="div_for"></div>
             </div>
         </div>
     </div>
-
 
 </body>
 
 </html>
 
-
 <script>
-
+    div_puxar_nome.innerHTML = sessionStorage.NOME_USUARIO;
     function trilha() {
+        obterDadosGrafico()
         seleçao_trilha.style.display = ""
         seleçao_grafico.style.display = "none"
         seleçao_mestrados.style.display = "none"
+        id_trilha.style.backgroundColor = "#363636"
+        id_trilha.style.color = "#FFF"
+
+        id_grafico.style.backgroundColor = ""
+        id_grafico.style.color = ""
+
+        id_mestrado.style.backgroundColor = ""
+        id_mestrado.style.color = ""
 
 
     }
@@ -202,7 +209,13 @@
         seleçao_trilha.style.display = "none"
         seleçao_grafico.style.display = ""
         seleçao_mestrados.style.display = "none"
-
+        id_trilha.style.backgroundColor = ""
+        id_trilha.style.color = ""
+        id_grafico.style.backgroundColor = "#363636"
+        id_grafico.style.color = "#FFF"
+        id_mestrado.style.backgroundColor = ""
+        id_mestrado.style.color = ""
+        
         var select = select_grafico.value;
 
 
@@ -218,15 +231,20 @@
 
     }
     function mestrado() {
+
         seleçao_trilha.style.display = "none"
         seleçao_grafico.style.display = "none"
         seleçao_mestrados.style.display = ""
-
+        id_trilha.style.backgroundColor = ""
+        id_trilha.style.color = ""
+        id_grafico.style.backgroundColor = ""
+        id_grafico.style.color = ""
+        id_mestrado.style.backgroundColor = "#363636"
+        id_mestrado.style.color = "#FFF"
     }
 </script>
 
 <!-- <script>
-    
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
 
@@ -262,18 +280,14 @@
 </script> -->
 
 <script>
-div_puxar_nome.innerHTML = sessionStorage.NOME_USUARIO;
-</script>
 
-<script>
+    function cadastrar_especialidade() {
 
-function cadastrar_especialidade(){
+        var especialidadeVar = select_especialidade.value;
+        var id_usuario = sessionStorage.ID_USUARIO;
 
-var especialidadeVar = select_especialidade.value;
-var id_usuario =  sessionStorage.ID_USUARIO;
-
- // Enviando o valor da nova input
- fetch("/usuarios/inserir", {
+        // Enviando o valor da nova input
+        fetch("/usuarios/inserir", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -283,8 +297,8 @@ var id_usuario =  sessionStorage.ID_USUARIO;
                 // Agora vá para o arquivo routes/usuario.js
                 especialidadeServer: especialidadeVar,
                 id_usuarioServer: id_usuario,
-                
-                
+
+
             })
         }).then(function (resposta) {
 
@@ -292,18 +306,16 @@ var id_usuario =  sessionStorage.ID_USUARIO;
 
             if (resposta.ok) {
                 // cardErro.style.display = "block";
-
-
-                
+                obterDadosGrafico()
 
                 // setTimeout(() => {
-                    window.location.reload
+                window.location.reload
                 // }, "100")
 
                 mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-                
-                
+
+
                 limparFormulario();
                 // finalizarAguardar();
             } else {
@@ -316,58 +328,18 @@ var id_usuario =  sessionStorage.ID_USUARIO;
 
         return false;
 
-
-
     }
+
 </script>
 
 <script>
 
-    // const labels1 = [
-    //     'Amigo',
-    //     'Companheiro',
-    //     'Pesquisador',
-    //     'Pioneiro',
-    //     'Excurcionista',
-    //     'Guia',
-    // ];
-
-    // const data1 = {
-    //     labels: labels1,
-    //     datasets: [
-    //         {
-    //             label: 'Qtd. especialidades totais',
-    //             backgroundColor:  ['rgb(24, 24, 24)'],
-    //             borderColor: 'black',
-    //             data: ['8', '12', '10', '15', '15', '17'],
-    //         },
-    //         {
-    //             label: 'Qtd. especialidades concluidas',
-    //             backgroundColor:  [ 'rgb(116, 116, 116)'],
-    //             borderColor: 'black',
-    //             data: ['3', '10', '8', '5', '12', '13'],
-    //         },],
-            
-    // };
-
-    // const config1 = {
-    //     type: 'bar',
-    //     data: data1,
-    //     options: {},
-    // };
-    
-    // const myChart1 = new Chart(
-    //     document.getElementById('myChart1'),
-    //     config1
-    // );.
-
-
-// var numeros[].;
+    var classes;
 
     function obterDadosGrafico() {
 
-        
-        var id_usuarioVar =  sessionStorage.ID_USUARIO;
+
+        var id_usuarioVar = sessionStorage.ID_USUARIO;
 
         // if (proximaAtualizacao != undefined) {
         //     clearTimeout(proximaAtualizacao);
@@ -376,11 +348,11 @@ var id_usuario =  sessionStorage.ID_USUARIO;
         fetch(`/medidas/ultimas/${id_usuarioVar}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`); 
                     // resposta.reverse();
-                   numeros=resposta;
+                    classes = resposta;
                     plotarGrafico(resposta);
-                    console.log(resposta)
+                    console.log(resposta)  
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -391,24 +363,22 @@ var id_usuario =  sessionStorage.ID_USUARIO;
             });
     }
 
-    
-
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
     function plotarGrafico(resposta) {
         console.log('iniciando plotagem do gráfico...');
-
+        atualizar_porcentagem()
         const labels1 = [];
 
         var dados = {
             labels: [],
             datasets: [
-            {
+                {
                     yAxisID: 'y-temperatura',
                     label: 'qtd. concluidas',
                     borderColor: '#FFF',
-                    backgroundColor: [ 'rgb(116, 116, 116)'],
+                    backgroundColor: '#000',
                     fill: false,
                     type: 'line',
                     data: []
@@ -416,12 +386,11 @@ var id_usuario =  sessionStorage.ID_USUARIO;
                 {
                     yAxisID: 'y-umidade',
                     label: ' qtd. total',
-                    borderColor: '#F234',
-                    backgroundColor: 'rgb(24, 24, 24)',
+                    backgroundColor: '#575757',
                     fill: true,
                     data: ['5', '9', '9', '12', '10', '7'] // dados fixos
                 },
-                
+
             ]
         };
 
@@ -430,9 +399,9 @@ var id_usuario =  sessionStorage.ID_USUARIO;
             dados.labels.push(registro.nome_classe);
             // dados.datasets[0].data.push(registro.umidade);
             dados.datasets[0].data.push(registro.qtd_especialidade); // count
-        }
+        };
 
-        console.log(JSON.stringify(dados));
+        // console.log(JSON.stringify(dados)); aaa
 
         var ctx = myChart1.getContext('2d'); // colocar o nome do canvas
         window.grafico_linha = Chart.Bar(ctx, {
@@ -454,7 +423,7 @@ var id_usuario =  sessionStorage.ID_USUARIO;
                         id: 'y-temperatura',
                         ticks: {
                             beginAtZero: true,
-                            max: 20,
+                            max: 15,
                             min: 0
                         }
                     }, {
@@ -464,7 +433,7 @@ var id_usuario =  sessionStorage.ID_USUARIO;
                         id: 'y-umidade',
                         ticks: {
                             beginAtZero: true,
-                            max: 20,
+                            max: 15,
                             min: 0
                         },
 
@@ -477,5 +446,59 @@ var id_usuario =  sessionStorage.ID_USUARIO;
         });
 
         // setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+
+        function atualizar_porcentagem() {
+
+
+            var qtd_amigo = 0;
+            var qtd_companheiro = 0;
+            var qtd_pesquisador = 0;
+            var qtd_pioneiro = 0;
+            var qtd_excurcionista = 0;
+            var qtd_guia = 0;
+            var maximo = [5,9,9,12,10,7]
+          
+
+
+            for (i = 0; i < classes.length; i++) {
+                if (i == 0) {
+                    qtd_amigo = classes[i].qtd_especialidade;
+                } else if (i == 1) {
+                    qtd_companheiro = classes[i].qtd_especialidade;
+                } else if (i == 2) {
+                    qtd_pesquisador = classes[i].qtd_especialidade;
+                } else if (i == 3) {
+                    qtd_pioneiro = classes[i].qtd_especialidade;
+                } else if (i == 4) {
+                    qtd_excurcionista = classes[i].qtd_especialidade;
+                } else if (i == 5) {
+                    qtd_guia = classes[i].qtd_especialidade;
+                }
+            };
+
+            // console.log(qtd_amigo)
+            // console.log(qtd_companheiro)
+            // console.log(qtd_pesquisador)
+            // console.log(qtd_pioneiro)
+            // console.log(qtd_excurcionista)
+            // console.log(qtd_guia)
+           
+            var porcentagem_amigo = (qtd_amigo /  maximo[0]) * 100;
+            var porcentagem_companheiro = (qtd_companheiro /  maximo[1]) * 100;
+            var porcentagem_pesquisador = (qtd_pesquisador /  maximo[2]) * 100;
+            var porcentagem_pioneiro = (qtd_pioneiro /  maximo[3]) * 100;
+            var porcentagem_excurcionista = (qtd_excurcionista /  maximo[4]) * 100;
+            var porcentagem_guia = (qtd_guia /  maximo[5]) * 100;
+
+            div_porcent_amigo.innerHTML = `${porcentagem_amigo.toFixed()}%`
+            div_porcent_companheiro.innerHTML = `${porcentagem_companheiro.toFixed()}%`
+            div_porcent_pesquisador.innerHTML = `${porcentagem_pesquisador.toFixed()}%`
+            div_porcent_pioneiro.innerHTML = `${porcentagem_pioneiro.toFixed()}%`
+            div_porcent_excurcionista.innerHTML = `${porcentagem_excurcionista.toFixed()}%`
+            div_porcent_guia.innerHTML = `${porcentagem_guia.toFixed()}%`
+
+
+
+        }
     }
 </script>

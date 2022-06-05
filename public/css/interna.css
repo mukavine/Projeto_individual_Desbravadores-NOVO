@@ -69,6 +69,11 @@ body {
     cursor: pointer;
 
 }
+.opçoes1:hover{
+    background-color: #363636;
+    color:#FFF ;
+    transition: 0.3s;
+}
 
 .opçoes2 {
     /* border: solid red 1px; */
@@ -82,6 +87,11 @@ body {
     cursor: pointer;
 
 }
+.opçoes2:hover{
+    background-color: #363636;
+    color:#FFF ;
+    transition: 0.3s;
+}
 
 .opçoes3 {
     /* border: solid red 1px; */
@@ -94,6 +104,11 @@ body {
     justify-content: start;
     cursor: pointer;
 
+}
+.opçoes3:hover{
+    background-color: #363636;
+    color:#FFF ;
+    transition: 0.3s;
 }
 
 .topico {
